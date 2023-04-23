@@ -80,3 +80,74 @@ function crossref_doi_deposit_doi_prefix_callback() {
 }
 
 // Add other settings field callbacks here (login_id, login_passwd, URL du dépôt, etc.)
+// Ajouter d'autres champs de réglage ici (login_id, login_passwd, URL du dépôt, etc.)
+// login_id Production
+add_settings_field(
+    'prod_login_id',
+    __('Production Login ID', 'crossref-doi-deposit'),
+    'crossref_doi_deposit_prod_login_id_callback',
+    'crossref-doi-deposit-settings',
+    'crossref_doi_deposit_general_settings'
+);
+
+// login_passwd Production
+add_settings_field(
+    'prod_login_passwd',
+    __('Production Login Password', 'crossref-doi-deposit'),
+    'crossref_doi_deposit_prod_login_passwd_callback',
+    'crossref-doi-deposit-settings',
+    'crossref_doi_deposit_general_settings'
+);
+
+// login_id Test
+add_settings_field(
+    'test_login_id',
+    __('Test Login ID', 'crossref-doi-deposit'),
+    'crossref_doi_deposit_test_login_id_callback',
+    'crossref-doi-deposit-settings',
+    'crossref_doi_deposit_general_settings'
+);
+
+// login_passwd Test
+add_settings_field(
+    'test_login_passwd',
+    __('Test Login Password', 'crossref-doi-deposit'),
+    'crossref_doi_deposit_test_login_passwd_callback',
+    'crossref-doi-deposit-settings',
+    'crossref_doi_deposit_general_settings'
+);
+
+// Production Login ID field callback
+function crossref_doi_deposit_prod_login_id_callback() {
+    $options = get_option('crossref_doi_deposit_settings');
+    ?>
+    <input type="text" name="crossref_doi_deposit_settings[prod_login_id]" value="<?php echo $options['prod_login_id']; ?>" />
+    <?php
+}
+
+// Production Login Password field callback
+function crossref_doi_deposit_prod_login_passwd_callback() {
+    $options = get_option('crossref_doi_deposit_settings');
+    ?>
+    <input type="password" name="crossref_doi_deposit_settings[prod_login_passwd]" value="<?php echo $options['prod_login_passwd']; ?>" />
+    <?php
+}
+
+// Test Login ID field callback
+function crossref_doi_deposit_test_login_id_callback() {
+    $options = get_option('crossref_doi_deposit_settings');
+    ?>
+    <input type="text" name="crossref_doi_deposit_settings[test_login_id]" value="<?php echo $options['test_login_id']; ?>" />
+    <?php
+}
+
+// Test Login Password field callback
+function crossref_doi_deposit_test_login_passwd_callback() {
+    $options = get_option('crossref_doi_deposit_settings');
+    ?>
+    <input type="password" name="crossref_doi_deposit_settings[test_login_passwd]" value="<?php echo $options['test_login_passwd']; ?>" />
+    <?php
+}
+
+$options = get_option('crossref_doi_deposit_settings');
+$prod_login_id = $options['prod_login_id'];
